@@ -1,21 +1,22 @@
 from django.urls import path
 from .views import (
-    CategoryListView, CategoryDetailView, CategoryWithCountListView,
-    ProductListView, ProductDetailView, ProductWithReviewsListView,
-    ReviewListView, ReviewDetailView
+    CategoryListCreateView, CategoryRetrieveUpdateDestroyView,
+    ProductListCreateView, ProductRetrieveUpdateDestroyView,
+    ReviewListCreateView, ReviewRetrieveUpdateDestroyView,
 )
 
 urlpatterns = [
+    
+    path('categories/', CategoryListCreateView.as_view()),                 
+    path('categories/<int:pk>/', CategoryRetrieveUpdateDestroyView.as_view()),  
 
-    path('categories/', CategoryListView.as_view()),
-    path('categories/<int:pk>/', CategoryDetailView.as_view()),
-    path('categories/count/', CategoryWithCountListView.as_view()),  
+    
+    path('products/', ProductListCreateView.as_view()),                    #
+    path('products/<int:pk>/', ProductRetrieveUpdateDestroyView.as_view()),   
+    
 
-    path('products/', ProductListView.as_view()),
-    path('products/<int:pk>/', ProductDetailView.as_view()),
-    path('products/reviews/', ProductWithReviewsListView.as_view()),  
-
-    path('reviews/', ReviewListView.as_view()),
-    path('reviews/<int:pk>/', ReviewDetailView.as_view()),
+    path('reviews/', ReviewListCreateView.as_view()),                      
+    path('reviews/<int:pk>/', ReviewRetrieveUpdateDestroyView.as_view()),      
 ]
+
 
