@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Category, Product, Review
+from .models import Product
 
-# Регистрируем модели
-admin.site.register(Category)
-admin.site.register(Product)
-admin.site.register(Review)
-
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'available', 'created_at')
+    search_fields = ('name',)
+    list_filter = ('available', 'created_at')
